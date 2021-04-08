@@ -8,10 +8,10 @@ data class Post (
         val groupName: String,
         val date: String,
         val postText: String,
-        var likesCount: Int,
-        var sharesCount: Int,
-        var viewsCount: Int,
-        var likedByMe: Boolean = false
+        val likesCount: Int,
+        val sharesCount: Int,
+        val viewsCount: Int,
+        val likedByMe: Boolean = false
 ) {
     fun numbersStyle(number: Int): String {
 
