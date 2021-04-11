@@ -23,11 +23,6 @@ class PostViewHolder(
 
             like.setOnClickListener {
                 onLikeListener(post)
-                if (!post.likedByMe) {
-                    likesCount.text = post.numbersStyle(post.likesCount + 1)
-                } else {
-                    likesCount.text = post.numbersStyle(post.likesCount - 1)
-                }
             }
 
 //                TODO("share.setOnClickListener")
