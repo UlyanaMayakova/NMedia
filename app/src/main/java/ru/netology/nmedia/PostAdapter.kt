@@ -10,7 +10,7 @@ typealias OnLikeListener = (post: Post) -> Unit
 class PostAdapter(private val onLikeListener: OnLikeListener)
     : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : PostViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = PostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, onLikeListener)
     }
