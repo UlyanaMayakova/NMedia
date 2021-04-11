@@ -16,23 +16,12 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
         val adapter = PostAdapter {
             viewModel.likeById(it.id)
+            viewModel.shareById(it.id)
         }
 
         binding.rvPostsFeed.adapter = adapter
         viewModel.data.observe(this) { post ->
             adapter.submitList(post)
-
-//            binding.like.setOnClickListener {
-//                binding.likesCount.text = post.numbersStyle(post.likesCount)
-//                viewModel.like()
-//            }
-//
-//            binding.share.setOnClickListener {
-//                binding.sharesCount.text = post.numbersStyle(post.sharesCount)
-//                viewModel.share()
-//            }
-//        }
-
         }
     }
 }

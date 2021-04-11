@@ -32,6 +32,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
     private val data = MutableLiveData(posts)
 
     override fun getAll(): LiveData<List<Post>> = data
+
     override fun likeById(id: Int) {
         posts = posts.map {
             if (it.id != id) it else it.copy(likedByMe = !it.likedByMe,
@@ -40,9 +41,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
-    override fun share() {
-//        TODO()
-//        post = post.copy(sharesCount = (post.sharesCount + 1))
-//        data.value = post
+    override fun shareById(id: Int) {
+        posts = posts.map{
+            if (it.id != id) it else it.copy(sharesCount = it.sharesCount + 1)
+        }
+        data.value = posts
     }
 }

@@ -5,7 +5,8 @@ import ru.netology.nmedia.databinding.PostBinding
 
 class PostViewHolder(
         private val binding: PostBinding,
-        private val onLikeListener: OnLikeListener) : RecyclerView.ViewHolder(binding.root) {
+        private val onLikeListener: OnLikeListener,
+        private val onShareListener: OnShareListener) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
         binding.apply {
@@ -25,7 +26,9 @@ class PostViewHolder(
                 onLikeListener(post)
             }
 
-//                TODO("share.setOnClickListener")
+            share.setOnClickListener{
+                onShareListener(post)
+            }
         }
     }
 }
