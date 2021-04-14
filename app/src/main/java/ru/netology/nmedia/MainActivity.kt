@@ -14,31 +14,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+        val adapter = PostAdapter (
+                onLikeListener = {
+                    viewModel.likeById(it.id)
+                },
+                onShareListener = {
+                    viewModel.shareById(it.id)
+                }
+        )
+
+        binding.rvPostsFeed.adapter = adapter
         viewModel.data.observe(this) { post ->
-
-            with(binding) {
-                icon.setImageResource(R.drawable.ic_launcher_netology_foreground)
-                groupName.text = post.groupName
-                date.text = post.date
-                postText.text = post.postText
-                likesCount.text = post.numbersStyle(post.likesCount)
-                sharesCount.text = post.numbersStyle(post.sharesCount)
-                viewsCount.text = post.numbersStyle(post.viewsCount)
-                like.setImageResource(
-                    if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like
-                )
-            }
-
-            binding.like.setOnClickListener {
-                binding.likesCount.text = post.numbersStyle(post.likesCount)
-                viewModel.like()
-            }
-
-            binding.share.setOnClickListener {
-                binding.sharesCount.text = post.numbersStyle(post.sharesCount)
-                viewModel.share()
-            }
+            adapter.submitList(post)
         }
-
     }
 }
