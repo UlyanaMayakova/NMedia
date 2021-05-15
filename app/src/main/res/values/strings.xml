@@ -5,4 +5,5 @@
     <string name="input">Type something</string>
     <string name="empty_input">Post text can\'t be empty</string>
     <string name="edit">Edit</string>
+    <string name="share">Share</string>
 </resources>

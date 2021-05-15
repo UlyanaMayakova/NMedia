@@ -1,5 +1,6 @@
 package ru.netology.nmedia
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
+                val intent = Intent().apply{
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, post.postText)
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(intent, getString(R.string.share))
+                startActivity(shareIntent)
             }
 
             override fun onRemove(post: Post) {

@@ -6,4 +6,5 @@
     <string name="input">Напишите что-нибудь</string>
     <string name="empty_input">Поле текста поста не может быть пустым</string>
     <string name="edit">Редактировать</string>
+    <string name="share">Поделиться</string>
 </resources>
