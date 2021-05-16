@@ -43,7 +43,7 @@
         android:id="@+id/menu"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        app:layout_constraintEnd_toEndOf="@id/viewsCount"
+        app:layout_constraintEnd_toEndOf="@id/views"
         app:layout_constraintStart_toEndOf="@id/author"
         app:layout_constraintTop_toTopOf="@id/author"
         style="@style/MenuButton"/>
@@ -99,25 +99,15 @@
         tools:textColor="@color/black"
         style="@style/ShareButton"/>
 
-    <TextView
-        android:id="@+id/viewsCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/like"
-        app:layout_constraintBottom_toBottomOf="@id/like"
-        tools:text="200"
-        android:textSize="16sp"
-        android:layout_marginEnd="16dp"/>
-
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/like"
         app:layout_constraintBottom_toBottomOf="@id/like"
-        app:layout_constraintEnd_toStartOf="@id/viewsCount"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/ic_views"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
+        tools:text="200"
+        style="@style/Views"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

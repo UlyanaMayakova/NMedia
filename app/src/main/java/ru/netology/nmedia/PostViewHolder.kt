@@ -15,7 +15,7 @@ class PostViewHolder(private val binding: PostBinding, private val onInteraction
             icon.setImageResource(R.drawable.ic_launcher_netology_foreground)
             like.text = NumberStyle.change(post.likesCount)
             share.text = NumberStyle.change(post.sharesCount)
-            viewsCount.text = NumberStyle.change(post.viewsCount)
+            views.text = NumberStyle.change(post.viewsCount)
             like.isChecked = post.likedByMe
 
             like.setOnClickListener {
