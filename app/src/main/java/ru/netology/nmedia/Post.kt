@@ -1,5 +1,9 @@
 package ru.netology.nmedia
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Post(
         val id: Int,
         val author: String,
@@ -9,4 +13,4 @@ data class Post(
         val sharesCount: Int,
         val viewsCount: Int,
         val likedByMe: Boolean = false
-)
+) : Parcelable

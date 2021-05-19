@@ -11,70 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/editing"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
         tools:listitem="@layout/post" />
 
-    <TextView
-        android:id="@+id/editing"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="Edited text"
-        android:padding="20dp"
-        android:background="@color/white"
-        android:textColor="@color/purple_200"
-        android:maxLines="4"
-        app:layout_constraintTop_toBottomOf="@id/rvPostsFeed"
-        app:layout_constraintBottom_toTopOf="@id/input"
-        app:layout_constraintEnd_toStartOf="@id/cancelBtn"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <ImageButton
-        android:id="@+id/cancelBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@color/white"
-        app:layout_constraintStart_toEndOf="@id/editing"
-        app:layout_constraintBottom_toTopOf="@id/saveBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvPostsFeed"
-        android:src="@drawable/ic_cancel"/>
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:constraint_referenced_ids="editing, cancelBtn"/>
-
-    <EditText
-        android:id="@+id/input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="@string/input"
-        android:inputType="textMultiLine"
-        android:padding="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="#AE4C4C4C"
-        android:textSize="18sp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/saveBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editing" />
-
-    <ImageButton
-        android:id="@+id/saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/input"
-        app:layout_constraintTop_toTopOf="@id/input"
-        app:srcCompat="@drawable/ic_save_tick" />
-
+        android:contentDescription="@string/add"
+        app:srcCompat="@drawable/ic_add"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

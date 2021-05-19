@@ -7,14 +7,14 @@ import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
 
 private val empty = Post(
-        id = 0,
-        author = "",
-        date = "",
-        postText = "",
-        likesCount = 0,
-        sharesCount = 0,
-        viewsCount = 0,
-        likedByMe = false
+    id = 0,
+    author = "",
+    date = "",
+    postText = "",
+    likesCount = 0,
+    sharesCount = 0,
+    viewsCount = 0,
+    likedByMe = false
 )
 
 class PostViewModel : ViewModel() {
@@ -31,16 +31,7 @@ class PostViewModel : ViewModel() {
         edited.value?.let {
             repository.save(it)
         }
-
         edited.value = empty
-    }
-
-    fun changeContent(content: String) {
-        edited.value?.let {
-            val text = content.trim()
-            if (it.postText == text) return
-            edited.value = it.copy(postText = text)
-        }
     }
 
     fun edit(post: Post) {

@@ -6,4 +6,6 @@
     <string name="empty_input">Post text can\'t be empty</string>
     <string name="edit">Edit</string>
     <string name="share">Share</string>
+    <string name="save">save</string>
+    <string name="add">add</string>
 </resources>

@@ -3,20 +3,24 @@ package ru.netology.nmedia
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val REQUEST_CODE_NEW = 1
+        const val REQUEST_CODE_EDIT = 2
+    }
+
+    private val viewModel: PostViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel: PostViewModel by viewModels()
         val adapter = PostAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
@@ -39,7 +43,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onEdit(post: Post) {
-                viewModel.edit(post)
+                val intent = Intent(this@MainActivity, EditActivity::class.java)
+                intent.putExtra(EditActivity.EDITED_POST, post)
+                startActivityForResult(intent, REQUEST_CODE_EDIT)
             }
         })
 
@@ -51,41 +57,32 @@ class MainActivity : AppCompatActivity() {
             if (post.id == 0) {
                 return@observe
             }
-
-            binding.group.visibility = View.VISIBLE
-            binding.editing.text = post.postText
-
-            with(binding.input) {
-                requestFocus()
-                setText(post.postText)
-            }
         }
 
-        binding.saveBtn.setOnClickListener {
-            with(binding.input) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(this@MainActivity,
-                            R.string.empty_input, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
+//        val newPostLauncher = registerForActivityResult(NewPostResultContract()) {result ->
+//            result ?: return@registerForActivityResult
+//            viewModel.changeContent(result)
+//            viewModel.save()
+//        }
 
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
+        binding.addFab.setOnClickListener {
+            val intent = Intent(this, NewPostActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_NEW)
+//            newPostLauncher.launch()
         }
+    }
 
-        binding.cancelBtn.setOnClickListener {
-            with(binding.input) {
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-            binding.group.visibility = View.GONE
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_NEW && resultCode == RESULT_OK && data != null) {
+            val post = data.getParcelableExtra<Post>(NewPostActivity.POST_KEY) ?: return
+            viewModel.edit(post)
+            viewModel.save()
+        } else if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK && data != null) {
+            val post = data.getParcelableExtra<Post>(EditActivity.EDITED_POST) ?: return
+            viewModel.edit(post)
+            viewModel.save()
         }
-
     }
 }
