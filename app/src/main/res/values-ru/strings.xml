@@ -2,4 +2,11 @@
 <resources>
     <string name="app_name">НМедиа</string>
     <string name="nmedia">НМедия!</string>
+    <string name="remove">Удалить</string>
+    <string name="input">Напишите что-нибудь</string>
+    <string name="empty_input">Поле текста поста не может быть пустым</string>
+    <string name="edit">Редактировать</string>
+    <string name="share">Поделиться</string>
+    <string name="save">сохранить</string>
+    <string name="add">добавить</string>
 </resources>
