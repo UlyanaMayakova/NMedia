@@ -1,11 +1,14 @@
 package ru.netology.nmedia
 
+import android.view.View
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.databinding.PostBinding
 
-class PostViewHolder(private val binding: PostBinding, private val onInteractionListener: OnInteractionListener)
-    : RecyclerView.ViewHolder(binding.root) {
+class PostViewHolder(
+    private val binding: PostBinding,
+    private val onInteractionListener: OnInteractionListener
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
         binding.apply {
@@ -17,6 +20,17 @@ class PostViewHolder(private val binding: PostBinding, private val onInteraction
             share.text = NumberStyle.change(post.sharesCount)
             views.text = NumberStyle.change(post.viewsCount)
             like.isChecked = post.likedByMe
+            videoGroup.visibility = View.GONE
+
+            if (post.videoUrl != null) {
+                videoGroup.visibility = View.VISIBLE
+                playBtn.setOnClickListener {
+                    onInteractionListener.onVideo(post)
+                }
+                video.setOnClickListener {
+                    onInteractionListener.onVideo(post)
+                }
+            }
 
             like.setOnClickListener {
                 onInteractionListener.onLike(post)

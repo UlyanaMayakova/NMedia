@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,105 +9,136 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@mipmap/ic_launcher_netology"
-        app:layout_constraintStart_toStartOf="parent"/>
+        tools:background="@mipmap/ic_launcher_netology" />
 
     <TextView
         android:id="@+id/author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/date"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        tools:text="Нетология. Университет интернет-профессий"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toStartOf="@id/menu"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Нетология. Университет интернет-профессий" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toBottomOf="@id/author"
-        app:layout_constraintBottom_toBottomOf="@id/icon"
-        tools:text="24 марта 16:00"
-        android:layout_marginEnd="8dp"/>
+        tools:text="24 марта 16:00" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
+        style="@style/MenuButton"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="@id/views"
         app:layout_constraintStart_toEndOf="@id/author"
-        app:layout_constraintTop_toTopOf="@id/author"
-        style="@style/MenuButton"/>
+        app:layout_constraintTop_toTopOf="@id/author" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
+        android:id="@+id/higherBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="date, icon, menu"/>
+        app:constraint_referenced_ids="date, icon, menu" />
 
     <TextView
         android:id="@+id/postText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/barrier"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        tools:text="Очень большой и очень интересный текст про что-то безумно интересное и невообразимо крутое"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/video"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/higherBarrier"
+        tools:text="Очень большой и очень интересный текст про что-то безумно интересное и невообразимо крутое" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/videoGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="video, playBtn" />
+
+    <ImageView
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/youtube"
+        app:layout_constraintBottom_toTopOf="@id/lowerBarrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postText" />
+
+    <ImageButton
+        android:id="@+id/playBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="@id/video"
+        app:layout_constraintEnd_toEndOf="@id/video"
+        app:layout_constraintStart_toStartOf="@id/video"
+        app:layout_constraintTop_toTopOf="@id/video" />
 
     <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/lowerBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="like, share, views"/>
+        app:constraint_referenced_ids="like, share, views"
+        app:layout_constraintTop_toBottomOf="@id/video" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
+        style="@style/LikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/postText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/share"
         android:layout_margin="16dp"
-        tools:text="3"
         android:textSize="16sp"
-        style="@style/LikeButton"/>
-
+        app:layout_constraintEnd_toStartOf="@id/share"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/video"
+        tools:text="3" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
+        style="@style/ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/like"
-        app:layout_constraintTop_toTopOf="@id/like"
-        app:layout_constraintBottom_toBottomOf="@id/like"
         android:layout_marginStart="16dp"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/like"
+        app:layout_constraintStart_toEndOf="@id/like"
+        app:layout_constraintTop_toTopOf="@id/like"
         tools:text="5"
-        tools:textColor="@color/black"
-        style="@style/ShareButton"/>
+        tools:textColor="@color/black" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/views"
+        style="@style/Views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/like"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="16sp"
-        tools:text="200"
-        style="@style/Views"/>
+        app:layout_constraintTop_toTopOf="@id/like"
+        tools:text="200" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

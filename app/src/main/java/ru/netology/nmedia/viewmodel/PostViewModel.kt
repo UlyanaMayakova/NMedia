@@ -24,6 +24,7 @@ class PostViewModel : ViewModel() {
     fun likeById(id: Int) = repository.likeById(id)
     fun shareById(id: Int) = repository.shareById(id)
     fun removeById(id: Int) = repository.removeById(id)
+    fun getVideoUrl(post: Post) = repository.getVideoUrl(post)
 
     val edited = MutableLiveData(empty)
 

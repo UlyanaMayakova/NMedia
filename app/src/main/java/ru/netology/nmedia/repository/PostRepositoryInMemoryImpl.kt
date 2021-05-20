@@ -25,7 +25,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
                     likesCount = 25,
                     sharesCount = 3,
                     viewsCount = 13_400,
-                    likedByMe = false
+                    likedByMe = false,
+                    videoUrl = "https://www.youtube.com/watch?v=cIvaeu6Oxzc"
             )
     )
 
@@ -39,6 +40,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
                     likesCount = if (it.likedByMe) it.likesCount - 1 else it.likesCount + 1)
         }
         data.value = posts
+    }
+
+    override fun getVideoUrl(post: Post): String? {
+        return post.videoUrl
     }
 
     override fun shareById(id: Int) {
